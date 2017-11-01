@@ -1,0 +1,22 @@
+{% extends 'contacts/base.html' %}
+
+
+{% block title %}
+    Logout
+{% endblock %}
+
+
+{% block header %}
+    <h2>Bye bye :)</h2>
+    <br/>
+{% endblock %}
+
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="sign out" />
+    </form>
+    <br/>
+{% endblock %}

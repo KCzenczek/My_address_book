@@ -1,0 +1,35 @@
+{% extends 'contacts/base.html' %}
+
+
+{% block content %}
+<form action="" method="post">
+    <table>
+        <tr>
+            <th scope="col">Surname</th>
+            <th scope="col">Name</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+
+        {% for person in person_list %}
+            <tr>
+                <th><a href="{% url 'contact-detail' person.id %}">{{ person.surname }}</a></th>
+                <th>{{ person.name }}</th>
+                <th><a href="{% url 'contact-update' person.id %}">
+                    <button type="button">Click to Edit</button></a></th>
+                <th><a href="{% url 'contact-delete' person.id %}">
+                    <button type="button">Click to Delete</button></a></th>
+            </tr>
+        {% endfor %}
+
+    </table>
+    <br>
+    <div>
+        <a href="{% url 'contact-create' %}">
+            <button type="button">Click here to add contact</button>
+        </a>
+    </div>
+</form>
+{% endblock %}
+
+
