@@ -53,7 +53,7 @@ class LoginView(View):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return redirect('contacts/welcoming_page.html')
+        return redirect('/contacts/welcome')
 
 
 class ContactListView(ListView):

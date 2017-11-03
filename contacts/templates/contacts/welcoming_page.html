@@ -15,16 +15,12 @@
 
 
 {% block content %}
-    <img src="{% static 'logo.png' %}" width="150" />
+    <img src="{% static 'new_logo.png' %}" width="450" />
     <br/>
     <p>To continue, you should identify yourself </p>
-    <a href="{% url 'login' %}">
-        <button type="button">Log in</button>
-    </a>
     <p> If you are me, well you can do anything :) <br/>
         Otherwise you might be one of my friend.
-        In that case you may check basic info about others
+        In that case you may only check basic info about others
     </p>
-    <br/>
 {% endblock %}
 
