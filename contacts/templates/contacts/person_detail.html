@@ -1,0 +1,42 @@
+{% extends 'contacts/base.html' %}
+
+{% block title %}
+    Contact details
+{% endblock %}
+
+{% block header %}
+    <h2>Contact details</h2>
+    <br/>
+{% endblock %}
+
+{% block content %}
+
+    <div>
+        <b>Details of the person</b><br>
+        <b>Name</b>: {{ person.name }}<br>
+        <b>Surname</b>: {{ person.surname }}<br>
+        <b>Description</b>: {{ person.description }}<br><br>
+        <b>Address</b><br>
+
+        {% for address in addresses %}
+            <i>city</i>: {{ address.city }}<br>
+            <i>street</i>: {{ address.street }}<br>
+            <i>building number</i>: {{ address.building_number }}<br>
+            <i>flat number</i>: {{ address.flat_number }} <br>
+        {% endfor %}
+
+        <br>
+        <b>Telephone</b><br>
+        {% for telephone in telephones %}
+            <i>number</i>: {{ telephone.phone_number }}<br>
+            <i>type</i>: {{ telephone.get_phone_type_display }}<br><br>
+        {% endfor %}
+
+        <br>
+        <b>E-mail</b><br>
+        {% for email in emails %}
+            <i>e-address</i>: {{ email.email_address }}<br>
+            <i>type</i>: {{ email.get_email_type_display }}<br>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -12,7 +12,7 @@ from django.views.generic import (
 
 from contacts.forms import (
     LoginForm,
-)
+    PersonForm, PersonUpdateForm)
 
 from .models import (
     Address,
@@ -56,19 +56,19 @@ class LogoutView(View):
         return redirect('/contacts/welcome')
 
 
-class ContactListView(ListView):
+class PersonListView(ListView):
     model = Person
     template_name = 'contacts/person_list.html'
 
 
-class ContactDetailView(View):
+class PersonDetailView(View):
 
     def get(self, request, person_id):
         person = Person.objects.get(id=person_id)
         addresses = Address.objects.filter(person_id=person_id)
         telephones = Telephone.objects.filter(person_id=person_id)
         emails = Email.objects.filter(person_id=person_id)
-        return TemplateResponse(request, "contacts/contact_detail.html", {
+        return TemplateResponse(request, "contacts/person_detail.html", {
             "person": person,
             "addresses": addresses,
             "telephones": telephones,
@@ -76,19 +76,28 @@ class ContactDetailView(View):
         })
 
 
-class ContactCreateView(CreateView):
+class PersonCreateView(CreateView):
+    template_name = 'contacts/person_form.html'
+    form_class = PersonForm
+    model = Person
+    success_url = '/contacts/list_contacts'
+
+
+class PersonUpdateView(UpdateView):
+    template_name = 'contacts/person_update_form.html'
+    form_class = PersonUpdateForm
+    model = Person
+    pk_url_kwarg = 'person_id'
+
+    def get_success_url(self):
+        return self.object.get_absolute_url()
+
+
+class PersonSearchView(FormView):
     pass
 
 
-class ContactUpdateView(UpdateView):
-    pass
-
-
-class ContactSearchView(FormView):
-    pass
-
-
-class ContactDeleteView(DeleteView):
+class PersonDeleteView(DeleteView):
     pass
 
 

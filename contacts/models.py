@@ -1,5 +1,6 @@
 # Create your models here.
 from django.db import models
+from django.urls import reverse
 
 
 class Person(models.Model):
@@ -9,6 +10,9 @@ class Person(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.name, self.surname)
+
+    def get_absolute_url(self):
+        return reverse('contact-detail', kwargs={'person_id': self.id})
 
 
 class Address(models.Model):

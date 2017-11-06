@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth import authenticate
 
+from contacts.models import Person, Address
+
 
 class LoginForm(forms.Form):
     login = forms.CharField(max_length=24)
@@ -24,3 +26,16 @@ class LoginForm(forms.Form):
         self.user = user
 
         return cleaned_data
+
+
+class PersonForm(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = '__all__'
+
+
+class PersonUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = '__all__'
+
